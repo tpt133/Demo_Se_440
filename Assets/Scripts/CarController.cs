@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
-
+[RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
     public enum WheelType{
@@ -23,12 +23,15 @@ public class CarController : MonoBehaviour
     [SerializeField] private float speed = 50f;
     [SerializeField] private float steerSpeed = 30f;
     [SerializeField] private float maxSteetAngle = 30f;
+    [SerializeField] private Vector3 centerOfMass;
     private float _moveInput;
     private float _steerInput;
     private float _BreakeInput;
     // Start is called before the first frame update
     void Start()
     {
+        var rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = centerOfMass;
     
     }
 
